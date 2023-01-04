@@ -1,0 +1,10 @@
+.video-container {
+  width: 500px;
+  height: 500px;
+  border: 2px solid black;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}

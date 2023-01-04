@@ -1,0 +1,20 @@
+<div class="container">
+  <div>Screen record</div>
+  <div>
+    <button *ngIf="state === 'NONE'" (click)="startRecording()">
+      Start record
+    </button>
+    <button *ngIf="state === 'RECORDING'" (click)="stopRecording()">
+      Stop record
+    </button>
+    <button *ngIf="state === 'RECORDED'" (click)="downloadRecording()">
+      Download video
+    </button>
+    <button *ngIf="state === 'RECORDED'" (click)="clearRecording()">
+      Clear record
+    </button>
+  </div>
+  <video #videoElement class="video-container" controls autoplay playsInline>
+    <source [src]="videoBlobUrl" />
+  </video>
+</div>
