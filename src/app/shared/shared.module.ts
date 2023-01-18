@@ -1,10 +1,13 @@
 import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
 import {
   ButtonComponent
 } from "./components";
 
 @NgModule({
-  imports: [],
+  imports: [
+    CommonModule
+  ],
   declarations: [
     ButtonComponent
   ],

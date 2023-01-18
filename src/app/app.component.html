@@ -1,38 +1,49 @@
 <div class="bg-[#333333] h-[100vh] flex flex-col overflow-hidden">
-  <div class="flex-1 flex justify-center border-2 border-red-500">
-    <video #videoElement class="h-[100%] w-auto max-w-[100%]" controls autoplay playsInline>
-      <source [src]="videoBlobUrl" />
-    </video>
+  <div class="flex-1 flex justify-center bg-[#333333]">
+    <div class="p-2 rounded-md overflow-hidden">
+      <video
+        #videoElement
+        class="h-[100%] w-auto max-w-[100%]"
+        controls
+        autoplay
+        playsInline
+      >
+        <source [src]="videoBlobUrl" />
+      </video>
+    </div>
+    <div class="w-[500px] p-2 flex">
+      <div class="bg-[#1b1b1b] flex-1 rounded-md p-2">
+        <div class="rounded-md overflow-hidden">
+          <div *ngFor="let item of this.listImage" class="p-4">
+            <img [src]="item.url" class="rounded-md overflow-hidden" />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="p-2 flex justify-center">
-    <button
-      class="bg-white p-2 rounded-md"
-      *ngIf="state === 'NONE'"
-      (click)="startRecording()"
-    >
-      Start record
-    </button>
-    <button
-      class="bg-white p-2 rounded-md"
-      *ngIf="state === 'RECORDING'"
-      (click)="stopRecording()"
-    >
-      Stop record
-    </button>
-    <button
-      class="bg-white p-2 rounded-md"
-      *ngIf="state === 'RECORDED'"
-      (click)="downloadRecording()"
-    >
-      Download video
-    </button>
-    <button
-      class="bg-white p-2 rounded-md"
-      *ngIf="state === 'RECORDED'"
-      (click)="clearRecording()"
-    >
-      Clear record
-    </button>
-    <app-button></app-button>
+  <div class="flex justify-center">
+    <app-button
+      (btnClick)="startRecording()"
+      text="Start record"
+      [show]="state === 'NONE'"
+    ></app-button>
+    <app-button
+      (btnClick)="stopRecording()"
+      text="Stop record"
+      [show]="state === 'RECORDING'"
+    ></app-button>
+    <app-button
+      (btnClick)="downloadRecording()"
+      text="Download video"
+      [show]="state === 'RECORDED'"
+    ></app-button>
+    <div class="p-2"></div>
+    <app-button
+      (btnClick)="clearRecording()"
+      text="Clear record"
+      [show]="state === 'RECORDED'"
+    ></app-button>
+    <div class="p-2"></div>
+    <app-button (btnClick)="takeScreenShot()" text="Screenshot"></app-button>
   </div>
 </div>

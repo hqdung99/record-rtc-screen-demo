@@ -1,7 +1,9 @@
 <button
-  class="bg-white p-2 rounded-md"
-  *ngIf="show"
+  [type]="type"
   (click)="onClick()"
+  [disabled]="isDisabled"
+  class="bg-white text-black p-2 rounded-sm normal-case"
+  *ngIf="show"
 >
-  
+  {{ buttonText }}
 </button>
