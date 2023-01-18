@@ -1,15 +1,16 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-button',
-  templateUrl: './button.component.html',
-  styleUrls: ['./button.component.css']
+  selector: 'app-icon-button',
+  templateUrl: './icon-button.component.html',
+  styleUrls: ['./icon-button.component.css']
 })
-export class ButtonComponent implements OnInit {
+export class IconButtonComponent implements OnInit {
   @Input() color: string = '0068B4';
   @Input() type: string = 'button';
   @Input() show: boolean = true;
   @Input() isDisabled = false;
+  @Input() class: any = '';
   @Output() btnClick = new EventEmitter();
 
   onClick() {

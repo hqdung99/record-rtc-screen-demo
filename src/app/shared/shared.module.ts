@@ -1,7 +1,8 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import {
-  ButtonComponent
+  ButtonComponent,
+  IconButtonComponent
 } from "./components";
 
 @NgModule({
@@ -9,10 +10,12 @@ import {
     CommonModule
   ],
   declarations: [
-    ButtonComponent
+    ButtonComponent,
+    IconButtonComponent
   ],
   exports: [
-    ButtonComponent
+    ButtonComponent,
+    IconButtonComponent
   ],
 })
 export class SharedModule {}

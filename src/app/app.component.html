@@ -1,5 +1,5 @@
 <div class="bg-[#333333] h-[100vh] flex flex-col overflow-hidden">
-  <div class="flex-1 flex justify-center bg-[#333333]">
+  <div class="flex-1 flex justify-center bg-[#333333] overflow-hidden">
     <div class="p-2 rounded-md overflow-hidden">
       <video
         #videoElement
@@ -11,39 +11,48 @@
         <source [src]="videoBlobUrl" />
       </video>
     </div>
-    <div class="w-[500px] p-2 flex">
+    <div class="w-[500px] p-2 flex overflow-auto h-full">
       <div class="bg-[#1b1b1b] flex-1 rounded-md p-2">
         <div class="rounded-md overflow-hidden">
-          <div *ngFor="let item of this.listImage" class="p-4">
+          <div *ngFor="let item of this.listImage" class="p-4 relative">
             <img [src]="item.url" class="rounded-md overflow-hidden" />
+            <app-icon-button
+              (btnClick)="deleteImageById(item.id)"
+              class="absolute top-1 right-1"
+            >
+              <mat-icon class="text-white">delete_forever</mat-icon>
+            </app-icon-button>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="flex justify-center">
-    <app-button
-      (btnClick)="startRecording()"
-      text="Start record"
-      [show]="state === 'NONE'"
-    ></app-button>
-    <app-button
+  <div class="flex justify-center p-4">
+    <app-icon-button (btnClick)="startRecording()" [show]="state === 'NONE'">
+      <mat-icon class="text-white">videocam</mat-icon>
+    </app-icon-button>
+    <app-icon-button
       (btnClick)="stopRecording()"
-      text="Stop record"
       [show]="state === 'RECORDING'"
-    ></app-button>
-    <app-button
+    >
+      <mat-icon class="text-white">stop</mat-icon>
+    </app-icon-button>
+    <app-icon-button
       (btnClick)="downloadRecording()"
-      text="Download video"
       [show]="state === 'RECORDED'"
-    ></app-button>
+    >
+      <mat-icon class="text-white">file_download</mat-icon>
+    </app-icon-button>
     <div class="p-2"></div>
-    <app-button
+    <app-icon-button
       (btnClick)="clearRecording()"
-      text="Clear record"
       [show]="state === 'RECORDED'"
-    ></app-button>
+    >
+      <mat-icon class="text-white">clear</mat-icon>
+    </app-icon-button>
     <div class="p-2"></div>
-    <app-button (btnClick)="takeScreenShot()" text="Screenshot"></app-button>
+    <app-icon-button (btnClick)="takeScreenShot()">
+      <mat-icon class="text-white">photo_camera</mat-icon>
+    </app-icon-button>
   </div>
 </div>

@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { v4 as uuidv4 } from "uuid";
 import { VideoRecordingService } from './video-recording.service';
 
 export function dataURLtoFile(dataurl: any, filename: any) {
@@ -49,11 +50,11 @@ export class AppComponent {
     private ref: ChangeDetectorRef,
     private sanitizer: DomSanitizer
   ) {
-    this.videoRecordingService.getMediaStream().subscribe((data) => {
+    this.videoRecordingService.getMediaStream().subscribe((data: any) => {
       this.video.srcObject = data;
       this.ref.detectChanges();
     });
-    this.videoRecordingService.getBlob().subscribe((data) => {
+    this.videoRecordingService.getBlob().subscribe((data: any) => {
       this.videoBlobUrl = this.sanitizer.bypassSecurityTrustUrl(data);
       this.video.srcObject = null;
       this.ref.detectChanges();
@@ -89,6 +90,14 @@ export class AppComponent {
 
   takeScreenShot() {
     const url = takepicture(this.video);
-    this.listImage.push({ url: url });
+    this.listImage.push({
+      url: url,
+      id: uuidv4()
+    });
   }
+  
+  deleteImageById(id: any) {
+    this.listImage = this.listImage.filter((item) => item.id !== id);
+  }
+
 }
